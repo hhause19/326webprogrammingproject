@@ -194,6 +194,17 @@ li a:focus{
    
 }
 
+/* share page css*/
+#share-buttons {
+	padding-left: 250px;
+}
+
+div img {
+	width: 25%;
+	height: 25%;
+	background: black;
+}
+
 
 
 

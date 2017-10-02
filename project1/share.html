@@ -4,9 +4,15 @@
   <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport"             content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"          content="">
+    <meta name="author"               content="">
+    <meta property="og:url"           content="https://www.google.com/" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="SpoTV" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="tv.png" />
+
 
     <title>SpoTV</title>
     <link rel="icon" 
@@ -84,7 +90,33 @@
     </div>
     
     <!-- Page Content -->
-   
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+      }
+      (document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <center>
+      <h1>Choose a playlist from the left</h1>
+    </center>
+      <div id="share-buttons">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Facebook_New_Logo_%282015%29.svg/1200px-Facebook_New_Logo_%282015%29.svg.png">
+        <img src="http://www.statisticbrain.com/wp-content/uploads/2015/10/twitter-company-statistics.jpg">
+        <img width: 25%; height: 25%; type= image/png; src="https://lh3.googleusercontent.com/J41hsV2swVteoeB8pDhqbQR3H83NrEBFv2q_kYdq1xp9vsI1Gz9A9pzjcwX_JrZpPGsa=w300">
+        <img width: 25%; height: 25%; src="https://lh3.googleusercontent.com/N-AY2XwXafWq4TQWfua6VyjPVQvTGRdz9CKOHaBl2nu2GVg7zxS886X5giZ9yY2qIjPh=w300">
+      </div>
+      <!-- Facebook share button -->
+      <div class="fb-share-button" 
+        data-href="https://www.google.com/" 
+        data-layout="button_count">
+      </div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="https://use.fontawesome.com/e9acab6f74.js"></script>
@@ -95,49 +127,6 @@
     <!-- VIDEO PLAYER -->
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id='playerwrapper'><div id="player"></div></div>
-
-    <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: 'M7lc1UVf-VE',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
-
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
-
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      var done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
-          done = true;
-        }
-      }
-      function stopVideo() {
-        player.stopVideo();
-      }
-    </script>
 
   </body>
 
