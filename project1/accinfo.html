@@ -11,8 +11,7 @@
       type="image/png"
           href="tv.png">
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">   
     <style>
     /* Style the tab */
       body{
@@ -21,12 +20,13 @@
       }
       div.tab {
         overflow: hidden;
-        border: 1px solid #ffffff;
-        background-color: #101010;
+        height: 90px;
+        background: rgb(60,60,60);
       }
 
       /* Style the buttons inside the tab */
       div.tab button {
+        height: 90px;
         background-color: inherit;
         color: #ffffff;
         float: left;
@@ -35,6 +35,10 @@
         cursor: pointer;
         padding: 14px 16px;
         transition: 0.3s;
+        -webkit-transition: background-color 1s ease-out;
+        -moz-transition: background-color 1s ease-out;
+        -o-transition: background-color 1s ease-out;
+        transition: background-color 1s ease-out;
       }
 
       /* Change background color of buttons on hover */
@@ -78,6 +82,7 @@
         <button class="tablinks" onclick="openTab(event, 'Change Password')">Change Password</button>
         <button class="tablinks" onclick="openTab(event, 'Change Email Address')">Change Email Address</button>
         <button class="tablinks" onclick="openTab(event, 'Verify Email Address')">Verify Email Address</button>
+        <button class="tablinks" onclick="location.href ='index.html';">Save and Return</button>
     </div>
 
     <div id="Change Profile Picture" class="tabcontent">
