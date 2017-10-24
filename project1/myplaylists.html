@@ -14,12 +14,12 @@
           href="tv.png">
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
     <style media="screen" type="text/css">
 
         .thumbnail.custom {
             float: left;
+            text-align: center;
             background-color: white;
             border: 2px solid green;
         }
@@ -31,8 +31,6 @@
         .thumbnail.custom > .caption {
           margin-left: 2px;
         }
-
-        body { background: black !important; }
     </style>
 
   </head>
@@ -43,28 +41,26 @@
     <nav class="navbar navbar-default" role = "navigation">
         <div class="container-fluid">
             <div id="pro-pic">
-                <img class="img-circle" src="hugh.jpg"></img>
+                <img class="img-circle" src="mclovin.png"></img>
             </div>
-            <div id='nav-name'>Hugh</div>
+            <div id='nav-name'>McLovin</div>
             <ul class="nav left">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">My Playlists</a></li>
-              <li><a href="#">Share</a></li>
+                <a href="index.html"><li>Home</li></a>
+                <a href="myplaylists.html"><li>My Playlists</li></a>
             </ul>
             <ul class="nav navbar-right">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-cog"></span>Settings</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>Account</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-stats"></span>Preferences</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                </ul>
-            </li>  
-            
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="fa fa-cog"></span>Settings</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="accinfo.html"><span class="fa fa-user-o"></span>Account</a></li>
+                        <li><a href="preference.html"><span class="fa fa-bar-chart-o"></span>Preferences</a></li>
+                        <li><a href="login.html"><span class="fa fa-sign-out"></span> Logout</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
-        
-        
+
+
     </nav>
       
     <!---Sidebar------------> 
