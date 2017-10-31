@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 import uuid
+import jsonfield
 
 class User(models.Model):
     '''
@@ -58,6 +59,28 @@ class Song(models.Model):
         """
         return reverse('song-detail', args=[str(self.id)])
 
+<<<<<<< HEAD
+class YoutubePlaylist(models.Model):
+    """
+    Model representing a YouTube playlist.
+    """
+    vid = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular video playlist")
+    title = models.CharField(max_length=200)
+    playlist = jsonfield.JSONField(blank=True,null=True)
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return self.id
+
+
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular book instance.
+        """
+        return reverse('youtubeplaylist-detail', args=[str(self.id)])
+=======
 class Playlist(models.Model):
     userid = models.CharField(max_length=200)
     pname = models.CharField(max_length=200)
@@ -66,3 +89,4 @@ class Playlist(models.Model):
     songs = models.ManyToManyField(Song)
     def __str__(self):
         return self.pname
+>>>>>>> 0cb049b6af3b3024a2a38f59cc4f0d6334c2ef17
