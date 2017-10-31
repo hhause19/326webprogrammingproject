@@ -29,13 +29,7 @@ class User(models.Model):
 
 # Create your models here.
 
-class Playlist(models.Model):
-	userid = models.CharField(max_length=200)
-	pname = models.CharField(max_length=200)
-	date = models.DateField()
-	image = models.FileField(upload_to=None, max_length=100)
-	def __str__(self):
-		return self.pname
+
 
 
 class Song(models.Model):
@@ -46,7 +40,7 @@ class Song(models.Model):
     artist = models.CharField(max_length=200)
     album = models.CharField(max_length=200)
     genre = models.CharField(max_length=200)
-    Playlists = models.ManyToManyField(Playlist)
+
     sid = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular song across whole library")
     hasVideo = models.BooleanField(null=False)
     date = models.DateField(auto_now=False, auto_now_add=False)
@@ -63,3 +57,12 @@ class Song(models.Model):
         Returns the url to access a particular book instance.
         """
         return reverse('song-detail', args=[str(self.id)])
+
+class Playlist(models.Model):
+    userid = models.CharField(max_length=200)
+    pname = models.CharField(max_length=200)
+    date = models.DateField()
+    image = models.FileField(upload_to=None, max_length=100)
+    songs = models.ManyToManyField(Song)
+    def __str__(self):
+        return self.pname
