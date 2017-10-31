@@ -1,8 +1,38 @@
 from django.db import models
+from django.urls import reverse
 import uuid
 import jsonfield
 
+class User(models.Model):
+    '''
+    user info
+    '''
+    uid = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular User")
+    fname = models.CharField(max_length=200)
+    lname = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    usrname = models.CharField(max_length=200)
+    #password will be done separately needs to be hashed
+    photo = models.FileField(upload_to=None, max_length=100)
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return self.usrname
+
+
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular book instance.
+        """
+        return reverse('user-detail', args=[str(self.id)])
+
 # Create your models here.
+
+
+
+
 class Song(models.Model):
     """
     Model representing a song.
@@ -11,7 +41,7 @@ class Song(models.Model):
     artist = models.CharField(max_length=200)
     album = models.CharField(max_length=200)
     genre = models.CharField(max_length=200)
-    #pid = models.ForeignKey('Playlist', on_delete=models.SET_NULL, null=True)
+
     sid = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular song across whole library")
     hasVideo = models.BooleanField(null=False)
     date = models.DateField(auto_now=False, auto_now_add=False)
@@ -29,6 +59,7 @@ class Song(models.Model):
         """
         return reverse('song-detail', args=[str(self.id)])
 
+<<<<<<< HEAD
 class YoutubePlaylist(models.Model):
     """
     Model representing a YouTube playlist.
@@ -49,3 +80,13 @@ class YoutubePlaylist(models.Model):
         Returns the url to access a particular book instance.
         """
         return reverse('youtubeplaylist-detail', args=[str(self.id)])
+=======
+class Playlist(models.Model):
+    userid = models.CharField(max_length=200)
+    pname = models.CharField(max_length=200)
+    date = models.DateField()
+    image = models.FileField(upload_to=None, max_length=100)
+    songs = models.ManyToManyField(Song)
+    def __str__(self):
+        return self.pname
+>>>>>>> 0cb049b6af3b3024a2a38f59cc4f0d6334c2ef17
