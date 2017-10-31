@@ -71,7 +71,7 @@ class YoutubePlaylist(models.Model):
         """
         String for representing the Model object.
         """
-        return self.id
+        return self.title
 
 
     def get_absolute_url(self):
