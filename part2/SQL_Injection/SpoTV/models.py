@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+import jsonfield
 
 # Create your models here.
 class Song(models.Model):
@@ -27,3 +28,24 @@ class Song(models.Model):
         Returns the url to access a particular book instance.
         """
         return reverse('song-detail', args=[str(self.id)])
+
+class YoutubePlaylist(models.Model):
+    """
+    Model representing a YouTube playlist.
+    """
+    vid = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular video playlist")
+    title = models.CharField(max_length=200)
+    playlist = jsonfield.JSONField(blank=True,null=True)
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return self.id
+
+
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular book instance.
+        """
+        return reverse('youtubeplaylist-detail', args=[str(self.id)])
