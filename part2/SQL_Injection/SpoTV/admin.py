@@ -6,3 +6,7 @@ class SongAdmin(admin.ModelAdmin):
 admin.site.register(Song, SongAdmin)
 
 admin.site.register(Playlist)
+
+class UserAdmin(admin.ModelAdmin):
+    list_display =  ('fname', 'lname', 'usrname', )
+admin.site.register(User, UserAdmin)
