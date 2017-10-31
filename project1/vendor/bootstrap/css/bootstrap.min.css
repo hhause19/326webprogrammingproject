@@ -269,6 +269,48 @@ li a:focus{
     width: 100%;
 }
 #player{
+<<<<<<< HEAD
+    
+   
+}
+
+/* share page css*/
+#share-buttons {
+	padding-left: 250px;
+}
+
+div img {
+	width: 25%;
+	height: 25%;
+	background: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+>>>>>>> 0f383563c2ced1924523053b69437e48ac05dce0
 
 
 }
