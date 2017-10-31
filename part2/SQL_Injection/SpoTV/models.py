@@ -59,7 +59,6 @@ class Song(models.Model):
         """
         return reverse('song-detail', args=[str(self.id)])
 
-<<<<<<< HEAD
 class YoutubePlaylist(models.Model):
     """
     Model representing a YouTube playlist.
@@ -80,7 +79,7 @@ class YoutubePlaylist(models.Model):
         Returns the url to access a particular book instance.
         """
         return reverse('youtubeplaylist-detail', args=[str(self.id)])
-=======
+
 class Playlist(models.Model):
     userid = models.CharField(max_length=200)
     pname = models.CharField(max_length=200)
@@ -89,4 +88,3 @@ class Playlist(models.Model):
     songs = models.ManyToManyField(Song)
     def __str__(self):
         return self.pname
->>>>>>> 0cb049b6af3b3024a2a38f59cc4f0d6334c2ef17
