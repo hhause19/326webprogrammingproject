@@ -18,7 +18,7 @@ class User(models.Model):
         """
         String for representing the Model object.
         """
-        return self.title
+        return self.usrname
 
 
     def get_absolute_url(self):
@@ -33,7 +33,7 @@ class Playlist(models.Model):
 	userid = models.CharField(max_length=200)
 	pname = models.CharField(max_length=200)
 	date = models.DateField()
-	image = models.CharField(max_length = 1000)
+	image = models.FileField(upload_to=None, max_length=100)
 	def __str__(self):
 		return self.pname
 
