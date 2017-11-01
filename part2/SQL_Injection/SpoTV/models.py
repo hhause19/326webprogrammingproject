@@ -13,7 +13,7 @@ class User(models.Model):
     email = models.CharField(max_length=200)
     usrname = models.CharField(max_length=200)
     #password will be done separately needs to be hashed
-    photo = models.FileField(upload_to=None, max_length=100)
+    photo = models.FileField(max_length=100)
 
     def __str__(self):
         """
@@ -27,11 +27,6 @@ class User(models.Model):
         Returns the url to access a particular book instance.
         """
         return reverse('user-detail', args=[str(self.id)])
-
-# Create your models here.
-
-
-
 
 class Song(models.Model):
     """
@@ -86,5 +81,6 @@ class Playlist(models.Model):
     date = models.DateField()
     image = models.FileField(upload_to=None, max_length=100)
     songs = models.ManyToManyField(Song)
+
     def __str__(self):
         return self.pname

@@ -1,3 +1,22 @@
 from django.shortcuts import render
-
+from .models import Song, Playlist, User, YoutubePlaylist
+import jsonfield
 # Create your views here.
+
+def index(request):
+    #get the titles of all the playlists
+    all_titles = Playlist.objects.values_list('pname')
+    propic = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').photo
+    fname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').fname
+    lname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').lname
+    playlists = Playlist.objects.all()
+    #playlistjson = YoutubePlaylist.objects.get(vid = '92fef807a09e497f87ab51d127dd8c89').playlist
+    #objects.values_list('eng_name', flat=True)
+    json = YoutubePlaylist.objects.get(vid = '92fef807a09e497f87ab51d127dd8c89').playlist
+
+
+    return render(
+        request,
+        'index.html',
+        context={'all_titles': all_titles, 'propic': propic, 'fname': fname, 'lname': lname, 'playlists':playlists, 'json':json}
+    )

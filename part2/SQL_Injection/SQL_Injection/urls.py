@@ -19,9 +19,19 @@ from django.conf.urls import include
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from SpoTV import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+]
+
+urlpatterns += [
     url(r'^SpoTV/', include('SpoTV.urls')),
+]
+
+urlpatterns += [
     url(r'^$', RedirectView.as_view(url='/SpoTV/', permanent=True)),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

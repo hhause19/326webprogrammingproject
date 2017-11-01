@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport"             content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"          content="">
+    <meta name="author"               content="">
+    <meta property="og:url"           content="https://www.google.com/" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="SpoTV" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="tv.png" />
+
+
+    <title>SpoTV</title>
+    <link rel="icon" 
+      type="image/png" 
+          href="tv.png">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default" role = "navigation">
+        <div class="container-fluid">
+            <div id="pro-pic">
+                <img class="img-circle" src="mclovin.png"></img>
+            </div>
+            <div id='nav-name'>Hugh</div>
+            <ul class="nav left">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">My Playlists</a></li>
+              <li><a href="#">Share</a></li>
+            </ul>
+            <ul class="nav navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-cog"></span>Settings</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>Account</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-stats"></span>Preferences</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
+            </li>  
+            
+            </ul>
+        </div>
+        
+        
+    </nav>
+      
+    <!---Sidebar------------> 
+      
+    <div id="right-panel">
+        <div class="inner-addon right-addon">
+          <i class="glyphicon glyphicon-search"></i>
+          <input type="text" class="form-control" placeholder="Search" />
+        </div>
+        <div id='playlist-title'>Spotify Playlists
+        </div>
+        <div class='playlist-holder'>
+            <ul class='playlists'>
+                 <a href="#"><li>Playlist 1</li></a>
+                 <a href="#"><li>Playlist 2</li></a>
+                 <a href="#"><li>Playlist 3</li></a>
+                 <a href="#"><li>Playlist 4</li></a>
+                 <a href="#"><li>Playlist 5</li></a>
+                 <a href="#"><li>Playlist 6</li></a>
+                 <a href="#"><li>Playlist 7</li></a>
+                 <a href="#"><li>Playlist 8</li></a>
+                 <a href="#"><li>Playlist 9</li></a>
+                 <a href="#"><li>Playlist 10</li></a>
+                 <a href="#"><li>Playlist 11</li></a>
+                 <a href="#"><li>Playlist 12</li></a>
+                 <a href="#"><li>Playlist 13</li></a>
+                 <a href="#"><li>Playlist 14</li></a>
+                 <a href="#"><li>Playlist 15</li></a>
+                 <a href="#"><li>Playlist 16</li></a>
+                
+            </ul>
+        </div>
+        <div class='sidebar-buttons'><a href='#'>Create Selected Playlist</a></div>
+        <div class='sidebar-buttons'><a href='#'>Import From Spotify</a></div>
+        <div class='sidebar-buttons'><a href='#'>Save YouTube Playlist</a></div>
+    </div>
+    
+    <!-- Page Content -->
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+      }
+      (document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <center>
+      <h1>Choose a playlist from the left</h1>
+    </center>
+      <div id="share-buttons">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Facebook_New_Logo_%282015%29.svg/1200px-Facebook_New_Logo_%282015%29.svg.png">
+        <img src="http://www.statisticbrain.com/wp-content/uploads/2015/10/twitter-company-statistics.jpg">
+        <img width: 25%; height: 25%; type= image/png; src="https://lh3.googleusercontent.com/J41hsV2swVteoeB8pDhqbQR3H83NrEBFv2q_kYdq1xp9vsI1Gz9A9pzjcwX_JrZpPGsa=w300">
+        <img width: 25%; height: 25%; src="https://lh3.googleusercontent.com/N-AY2XwXafWq4TQWfua6VyjPVQvTGRdz9CKOHaBl2nu2GVg7zxS886X5giZ9yY2qIjPh=w300">
+      </div>
+      <!-- Facebook share button -->
+      <div class="fb-share-button" 
+        data-href="https://www.google.com/" 
+        data-layout="button_count">
+      </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://use.fontawesome.com/e9acab6f74.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- VIDEO PLAYER -->
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id='playerwrapper'><div id="player"></div></div>
+
+  </body>
+
+</html>

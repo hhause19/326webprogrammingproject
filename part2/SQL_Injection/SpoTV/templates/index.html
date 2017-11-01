@@ -1,0 +1,16 @@
+{% extends "index_base_generic.html" %}
+
+{% block playlists %}
+<div id='playlist-title'>Spotify Playlists
+</div>
+<div class='playlist-holder'>
+    {% if playlists %}
+    <ul class='playlists'>
+         {% for playlist in playlists %}
+         <a href="#"><li>{{ playlist.pname }}</li></a>
+         {% endfor %}
+    </ul>
+    {% else %}
+    {% endif %}
+</div>
+{% endblock %}
