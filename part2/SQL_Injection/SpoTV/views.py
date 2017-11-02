@@ -27,14 +27,24 @@ from django.views import generic
 #    model = Playlist
 
 def myplaylists(request):
+    propic = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').photo
+    fname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').fname
+    lname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').lname
+    usrname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').usrname
+    email = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').email
     playlists = Playlist.objects.all()
     return render(
         request,
         'myplaylists.html',
-        context={'playlists':playlists}
+        context={'playlists':playlists, 'propic': propic, 'fname': fname, 'lname': lname}
     )
 
 def myplaylistdetail(request,pk):
+    propic = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').photo
+    fname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').fname
+    lname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').lname
+    usrname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').usrname
+    email = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').email
     try:
         playlist_id=Playlist.objects.get(pk=pk)
     except Playlist.DoesNotExist:
@@ -45,7 +55,7 @@ def myplaylistdetail(request,pk):
     return render(
         request,
         'playlistdetail.html',
-        context={'playlist':playlist_id,}
+        context={'playlist':playlist_id, 'propic': propic, 'fname': fname, 'lname': lname}
     )
 
 def accinfo(request):
