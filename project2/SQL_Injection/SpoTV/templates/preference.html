@@ -1,89 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SpoTV-preference</title>
-    <link rel="icon" 
-      type="image/png" 
-          href="tv.png">
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="vendor/bootstrap/css/animate.min.css">
-
-  </head>
-
-  <body>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-default" role = "navigation">
-        <div class="container-fluid">
-            <div id="pro-pic">
-                <img class="img-circle" src="mclovin.png"></img>
-            </div>
-            <div id='nav-name'>McLovin</div>
-            <ul class="nav left">
-                <a href="index.html"><li>Home</li></a>
-                <a href="myplaylists.html"><li>My Playlists</li></a>
-            </ul>
-            <ul class="nav navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span>Settings</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="accinfo.html"><span class="fa fa-user-o"></span>Account</a></li>
-                        <li><a href="preference.html"><span class="fa fa-bar-chart-o"></span>Preferences</a></li>
-                        <li><a href="login.html"><span class="fa fa-sign-out"></span> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+{% extends "index_base_generic.html" %}
 
 
-    </nav>
-      
-    <!---Sidebar------------> 
-      
-    <div id="right-panel">
-        <div class="inner-addon right-addon">
-          <i class="glyphicon glyphicon-search"></i>
-          <input type="text" class="form-control" placeholder="Search" />
-        </div>
-        <div id='playlist-title'>Music Types
-        </div>
-        <div class='playlist-holder'>
-            <ul class='playlists'>
-                 <a href="#"><li>Classic</li></a>
-                 <a href="#"><li>Jazz</li></a>
-                 <a href="#"><li>Rock Music</li></a>
-                 <a href="#"><li>Blues</li></a>
-                 <a href="#"><li>Popular Music</li></a>
-                 <a href="#"><li>Hip Hop Music</li></a>
-                 <a href="#"><li>Tone</li></a>
-                 <a href="#"><li>Disco</li></a>
-                 <a href="#"><li>Country Music</li></a>
-                 <a href="#"><li>Rap</li></a>   
-                 <a href="#"><li>Others</li></a>    
-            </ul>
-        </div>
-        <div class='sidebar-buttons'><a href='#'>Add Music</a></div>
-    </div>
-    
- 
-    <div id='playerwrapper'><div id="player"></div></div>
-    
+{% block pagecontent %}
+    <style>
+    p{
+        color: white;
+    }
+    </style>
+    <!-- Bootstrap core JavaScript -->
     <script src="https://use.fontawesome.com/e9acab6f74.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-  </body>
+    
+    <div id="left-panel">
+    {% block genrelist %}
+    <div id='playlist-title'>All Songs
+    </div>
+    <div class='playlist-holder'>
+        {% if songs %}
+          {% for song in songs %}
+            <div class="col">
+              <div class="thumbnail custom">
 
-
-
-</html>
+                <div class="caption">
+                  <p font-color="white"><a style="margin-left: 10px">Title: <a>{{song.title}}</a></a>
+                  <a style="margin-left: 200px">Artist: <a>{{song.artist}}</a></a></a>        
+                  <a style="margin-left: 200px">Genre:  <a>{{ song.genre}}</a></a>    
+                   <a style="margin-left: 200px">Album:  <a>{{song.album}}</a></a></p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+        {% endif %}
+    </div>
+    {% endblock %}
+    <button type="button" style="width: 200px">Classic Music</button>
+    <button type="button" style="width: 200px">Rock Music</button>
+    <button type="button" style="width: 200px">other Music</button>
+    <p><button type="button" class="btn btn-primary"><a href="{% url 'index' %}">Done</a></button></p>
+</div>
+{% endblock %}

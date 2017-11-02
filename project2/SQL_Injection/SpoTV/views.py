@@ -70,3 +70,16 @@ def accinfo(request):
         'accinfo.html',
         context={'propic': propic, 'fname': fname, 'lname': lname, 'usrname': usrname, 'email': email}
     )
+
+def preference(request):
+    propic = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').photo
+    fname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').fname
+    lname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').lname
+    usrname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').usrname
+    email = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').email
+    songlists = Song.objects.all()
+    return render(
+        request,
+        'preference.html',
+        context={'songs':songlists, 'propic': propic, 'fname': fname, 'lname': lname}
+    )
