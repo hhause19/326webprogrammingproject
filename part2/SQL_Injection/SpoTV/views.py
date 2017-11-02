@@ -41,7 +41,23 @@ from django.views import generic
 #    model = Playlist
 
 def myplaylists(request):
+    playlists = Playlist.objects.all()
     return render(
         request,
         'myplaylists.html',
+        context={'playlists':playlists}
+    )
+
+def myplaylistdetail(request,pk):
+    try:
+        playlist_id=Playlist.objects.get(pk=pk)
+    except Playlist.DoesNotExist:
+        raise Http404("Playlist does not exist")
+
+    #book_id=get_object_or_404(Book, pk=pk)
+
+    return render(
+        request,
+        'playlistdetail.html',
+        context={'playlist':playlist_id,}
     )
