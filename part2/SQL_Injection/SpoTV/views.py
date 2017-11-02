@@ -21,6 +21,20 @@ def index(request):
         context={'all_titles': all_titles, 'propic': propic, 'fname': fname, 'lname': lname, 'playlists':playlists, 'json':json}
     )
 
+    #account information screen view
+def accinfo(request):
+    #get the account information
+    propic = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').photo
+    fname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').fname
+    lname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').lname
+    usrname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').usrname
+    email = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').email
+    return render(
+        request,
+        'accinfo.html',
+        context={'propic': propic, 'fname': fname, 'lname': lname, 'usrname': usrname, 'email': email}
+    )
+
 from django.views import generic
 
 #class PlaylistListView(generic.ListView):
