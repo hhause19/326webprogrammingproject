@@ -27,7 +27,9 @@ from django.views import generic
 #    model = Playlist
 
 def myplaylists(request):
+    playlists = Playlist.objects.all()
     return render(
         request,
         'myplaylists.html',
+        context={'playlists':playlists}
     )
