@@ -15,7 +15,7 @@
         {% if playlists %}
         <ul class='playlists'>
              {% for playlist in playlists %}
-             <a href="#"><li>{{ playlist.pname }}</li></a>
+             <a href="./myplaylists/{{ playlist.id }}"><li>{{ playlist.pname }}</li></a>
              {% endfor %}
         </ul>
         {% else %}
