@@ -24,7 +24,6 @@
         height: 90px;
         background: rgb(60,60,60);
       }
-
       /* Style the buttons inside the tab */
       div.tab button {
         height: 90px;
@@ -41,19 +40,16 @@
         -o-transition: background-color 1s ease-out;
         transition: background-color 1s ease-out;
       }
-
       /* Change background color of buttons on hover */
       div.tab button:hover {
         background-color: #ffffff;
         color: black;
       }
-
       /* Create an active/current tablink class */
       div.tab button.active {
         background-color: #ffffff;
         color: black;
       }
-
       /* Style the tab content */
       .tabcontent {
         display: none;
@@ -64,12 +60,10 @@
         -webkit-animation: fadeEffect 1s;
         animation: fadeEffect 1s; /* Fading effect takes 1 second */
       }
-
       @-webkit-keyframes fadeEffect {
         from {opacity: 0;}
         to {opacity: 1;}
       }
-
       @keyframes fadeEffect {
         from {opacity: 0;}
         to {opacity: 1;}
@@ -129,19 +123,16 @@
       function openTab(evt, tabName) {
         // Declare all variables
         var i, tabcontent, tablinks;
-
         // Get all elements with class="tabcontent" and hide them
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
           tabcontent[i].style.display = "none";
         }
-
         // Get all elements with class="tablinks" and remove the class "active"
         tablinks = document.getElementsByClassName("tablinks");
         for (i = 0; i < tablinks.length; i++) {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
-
         // Show the current tab, and add an "active" class to the button that opened the tab
         document.getElementById(tabName).style.display = "block";
         evt.currentTarget.className += " active";
