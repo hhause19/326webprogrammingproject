@@ -20,3 +20,14 @@ def index(request):
         'index.html',
         context={'all_titles': all_titles, 'propic': propic, 'fname': fname, 'lname': lname, 'playlists':playlists, 'json':json}
     )
+
+from django.views import generic
+
+#class PlaylistListView(generic.ListView):
+#    model = Playlist
+
+def myplaylists(request):
+    return render(
+        request,
+        'myplaylists.html',
+    )
