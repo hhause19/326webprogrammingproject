@@ -1,27 +1,30 @@
 {% extends "index_base_generic.html" %}
 
+{% load static %}
 <!---Sidebar------------>
 {% block pagecontent %}
 <div id="right-panel">
     <div class="inner-addon right-addon">
-      <span class="fa fa-search"></span>
-      <input type="text" class="form-control" placeholder="Search" />
+      {% csrf_token %}
+      <input class="form-control" id='search' name="search" type="text" placeholder="Filter">
+      <button type="submit">
+        <span class="fa fa-search"></span>
+      </button>
     </div>
-
-    {% block playlists %}
     <div id='playlist-title'>Spotify Playlists
     </div>
     <div class='playlist-holder'>
+      <ul class='playlists' id = 'search-results'>
         {% if playlists %}
-        <ul class='playlists'>
-             {% for playlist in playlists %}
-             <a href="./myplaylists/{{ playlist.id }}"><li>{{ playlist.pname }}</li></a>
-             {% endfor %}
-        </ul>
+            {% for playlist in playlists %}
+              <li><a href="./myplaylists/{{ playlist.id }}">{{ playlist.pname }}</a></li>
+            {% endfor %}
         {% else %}
+          <li>No matches found.</li>
         {% endif %}
+      </ul>
     </div>
-    {% endblock %}
+
     <button type="button" class="btn btn-primary">Create Video Playlist</button>
     <button type="button" class="btn btn-primary">Import From Spotify</button>
     <button type="button" class="btn btn-primary">Save YouTube Playlist</button>
@@ -31,11 +34,12 @@
 
 
 <!-- Bootstrap core JavaScript -->
-{% load static %}
+
 <script src="https://use.fontawesome.com/e9acab6f74.js"></script>
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
 <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/ajax.js' %}"></script>
 
 <!-- VIDEO PLAYER -->
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->

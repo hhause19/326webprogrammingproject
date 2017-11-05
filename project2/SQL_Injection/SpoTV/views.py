@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Song, Playlist, User, YoutubePlaylist
+from django.views import generic
 import jsonfield
 # Create your views here.
 
@@ -14,17 +15,27 @@ def index(request):
     #objects.values_list('eng_name', flat=True)
     json = YoutubePlaylist.objects.get(vid = '92fef807a09e497f87ab51d127dd8c89').playlist
 
-
     return render(
         request,
         'index.html',
-        context={'all_titles': all_titles, 'propic': propic, 'fname': fname, 'lname': lname, 'playlists':playlists, 'json':json}
+        context={'all_titles': all_titles, 'propic': propic, 'fname': fname, 'lname': lname,'playlists': playlists, 'json':json}
     )
 
-from django.views import generic
 
-#class PlaylistListView(generic.ListView):
-#    model = Playlist
+#Used to filter the playlist based on user input.
+def playlist_filter(request):
+    if request.method == 'POST':
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+
+    playlists = Playlist.objects.filter(pname__icontains = search_text)
+
+    return render(
+        request,
+        'playlist_search.html',
+        context = {'filtered_playlists': playlists})
+
 
 def myplaylists(request):
     propic = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').photo
@@ -82,4 +93,11 @@ def preference(request):
         request,
         'preference.html',
         context={'songs':songlists, 'propic': propic, 'fname': fname, 'lname': lname}
+    )
+
+def login(request):
+    return render(
+        request,
+        'login.html',
+        context={}
     )
