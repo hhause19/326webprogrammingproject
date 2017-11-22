@@ -182,7 +182,7 @@ a:focus{
     align-content: center;
 }
 .inner-addon {
-    position: relative;
+    position: relative; 
 
 }
 .form-control{
@@ -190,18 +190,28 @@ a:focus{
     border-radius: 10px;
     font-size:15px;
 }
-.inner-addon .fa {
-    position: absolute;
-    padding: 10px;
-    pointer-events: none;
-}
-
-.right-addon .fa {
-    right: 0px;
-    top: -5px;
+.right-addon button .fa {
+    position: absolute; 
+    padding-top: 4px;
+    padding-bottom: 3px;
+    right: 4px;
+    top: 1px;
 }
 .right-addon input {
-    padding-right: 30px;
+    padding-right: 30px; 
+}
+#searchform{
+    
+}
+.right-addon button{
+    right: 0px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    bottom: 0;
+    top: 0px;
+    border: 0; 
+    background:transparent;
+    position: absolute; 
 }
 #playlist-title{
     font-size: 15px;

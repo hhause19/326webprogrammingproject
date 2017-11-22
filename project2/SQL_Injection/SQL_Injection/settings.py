@@ -26,18 +26,18 @@ SECRET_KEY = 'v=*c0&1p&ezroykawe7n19o-fnnkn16@)gycd0zv#cm2i(kod^'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'SpoTV.apps.SpotvConfig',
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'SQL_Injection.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,6 +117,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/'
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'SpoTV', 'media')
 MEDIA_URL = 'SpoTV/media/'

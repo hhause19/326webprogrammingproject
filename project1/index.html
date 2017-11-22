@@ -50,8 +50,12 @@
 
     <div id="right-panel">
         <div class="inner-addon right-addon">
-          <span class="fa fa-search"></span>
-          <input type="text" class="form-control" placeholder="Search" />
+          <form id="searchform" action="" method="get" accept-charset="utf-8">
+            <input class="form-control" name="q" type="text" placeholder="Search">
+            <button type="submit">
+                <span class="fa fa-search"></span>
+            </button>
+          </form>
         </div>
         <div id='playlist-title'>Spotify Playlists
         </div>
