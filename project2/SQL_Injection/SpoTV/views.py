@@ -1,6 +1,12 @@
 from django.shortcuts import render
 from .models import Song, Playlist, User, YoutubePlaylist
 from django.views import generic
+from .forms import SignUpForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate
+from django.shortcuts import render, redirect
 import jsonfield
 # Create your views here.
 
@@ -99,5 +105,31 @@ def login(request):
     return render(
         request,
         'login.html',
+        context={}
+    )
+
+def logout(request):
+  auth.logout(request)
+  # Redirect to a success page.
+  return HttpResponseRedirect("login.html")
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            auth_login(request, user)
+            return redirect('spotify_auth')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {'form': form})
+
+def spotify_auth(request):
+    return render(
+        request,
+        'registration/spotify_auth.html',
         context={}
     )

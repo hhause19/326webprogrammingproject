@@ -365,8 +365,8 @@ div img {
 }
 
 input:-webkit-autofill {
-    -webkit-text-fill-color: grey;
-    -webkit-box-shadow: inset 0 0 0px 9999px black;
+    -webkit-text-fill-color: black;
+    -webkit-box-shadow: inset 0 0 0px 9999px grey;
 }
 
 .login-field .form-control{
@@ -379,6 +379,12 @@ input:-webkit-autofill {
     height: 30px;
     font-size: 15px;
     border: none;
+}
+
+.loginbtn:focus, .btn:focus{
+  outline: none !important;
+  border-color: rgba(0,0,0,.5);
+  box-shadow: 0 0 10px #87CEFA;
 }
 
 /***************password_reset css***************************/
@@ -408,10 +414,6 @@ input:-webkit-autofill {
   color: black;
 }
 
-#id_email:focus{
-  outline: none;
-}
-
 #id_new_password1{
   padding-left: 10px;
   padding-right: 10px;
@@ -431,13 +433,6 @@ input:-webkit-autofill {
   color: black;
 }
 
-#id_new_password1:focus{
-  outline: none;
-}
-
-#id_new_password2:focus{
-  outline: none;
-}
 table {
   border-collapse: collapse;
 }
@@ -449,4 +444,75 @@ td {
   color: white;
   text-decoration: none;
   list-style: none;
+}
+
+/***************sign up  css***************************/
+
+#id_label_tag{
+  color: white;
+}
+
+#id_username{
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: grey;
+  border-radius: 20px;
+  height: 30px;
+  border-style: hidden;
+  color:black;
+}
+#id_username:focus, #id_first_name:focus, #id_last_name:focus, #id_password1:focus,
+#id_password2:focus,#id_email:focus, #id_new_password1:focus, #id_new_password2:focus,
+#signup1:focus {
+  outline: none !important;
+  border-color: rgba(0,0,0,.5);
+  box-shadow: 0 0 10px #87CEFA;
+}
+#id_first_name{
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: grey;
+  border-radius: 20px;
+  height: 30px;
+  border-style: hidden;
+  color:black;
+}
+
+#id_last_name{
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: grey;
+  border-radius: 20px;
+  height: 30px;
+  border-style: hidden;
+  color:black;
+}
+
+#id_password1{
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: grey;
+  border-radius: 20px;
+  height: 30px;
+  border-style: hidden;
+  color:black;
+}
+#id_password2{
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: grey;
+  border-radius: 20px;
+  height: 30px;
+  border-style: hidden;
+  color:black;
+}
+
+#signup1{
+  text-align: center;
+  width:10%;
+}
+#spotify_verify{
+  position: absolute;
+  top:20px;
+  left: 40%;
 }
