@@ -13,7 +13,8 @@ from django.contrib.auth import authenticate, update_session_auth_hash
 from django.shortcuts import render, redirect
 import jsonfield
 # Create your views here.
-@login_required
+
+@login_required(login_url='login/')
 def index(request):
     #get the titles of all the playlists
     profile = Profile.objects.get(user=request.user)
@@ -23,7 +24,7 @@ def index(request):
     propic = profile.photo
     fname = request.user.first_name
     lname = request.user.last_name
-    playlists = Playlist.objects.all()
+
     #playlistjson = YoutubePlaylist.objects.get(vid = '92fef807a09e497f87ab51d127dd8c89').playlist
     #objects.values_list('eng_name', flat=True)
     json = YoutubePlaylist.objects.get(vid = '92fef807a09e497f87ab51d127dd8c89').playlist
@@ -34,23 +35,22 @@ def index(request):
         context={'all_titles': all_titles, 'propic': propic, 'fname': fname, 'lname': lname,'playlists': playlists, 'json':json}
     )
 
-
 #Used to filter the playlist based on user input.
-@login_required
+@login_required(login_url='login/')
 def playlist_filter(request):
     if request.method == 'POST':
         search_text = request.POST['search_text']
     else:
         search_text = ''
 
-    playlists = Playlist.objects.filter(pname__icontains = search_text)
+    playlists = Playlist.objects.filter(pname__icontains = search_text, user=request.user)
 
     return render(
         request,
         'playlist_search.html',
         context = {'filtered_playlists': playlists})
 
-@login_required
+@login_required(login_url='login/')
 def myplaylists(request):
     profile = Profile.objects.get(user=request.user)
     propic = profile.photo
@@ -58,14 +58,14 @@ def myplaylists(request):
     lname = request.user.last_name
     usrname = request.user.username
     email = request.user.email
-    playlists = Playlist.objects.all()
+    playlists = Playlist.objects.filter(user=request.user)
     return render(
         request,
         'myplaylists.html',
         context={'playlists':playlists, 'propic': propic, 'fname': fname, 'lname': lname}
     )
 
-@login_required
+@login_required(login_url='login/')
 def myplaylistdetail(request,pk):
     profile = Profile.objects.get(user=request.user)
     propic = profile.photo
@@ -86,7 +86,7 @@ def myplaylistdetail(request,pk):
         context={'playlist':playlist_id, 'propic': propic, 'fname': fname, 'lname': lname}
     )
 
-@login_required
+@login_required(login_url='login/')
 def accinfo(request):
     #get the account information
     profile = Profile.objects.get(user=request.user)
@@ -101,7 +101,7 @@ def accinfo(request):
         context={'propic': propic, 'fname': fname, 'lname': lname, 'usrname': usrname, 'email': email}
     )
 
-@login_required
+@login_required(login_url='login/')
 def preference(request):
     profile = Profile.objects.get(user=request.user)
     propic = profile.photo
@@ -123,10 +123,11 @@ def login(request):
         context={}
     )
 
+@login_required(login_url='login/')
 def logout(request):
   auth.logout(request)
   # Redirect to a success page.
-  return HttpResponseRedirect("login.html")
+  return HttpResponseRedirect("/login/")
 
 def signup(request):
     if request.method == 'POST':
@@ -150,6 +151,7 @@ def spotify_auth(request):
         context={}
     )
 
+@login_required(login_url='login/')
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -166,7 +168,7 @@ def change_password(request):
         'form': form
     })
 
-
+@login_required(login_url='login/')
 def addplaylist(request):
     if request.method == 'POST':
         form = AddPlaylistForm(request.POST)

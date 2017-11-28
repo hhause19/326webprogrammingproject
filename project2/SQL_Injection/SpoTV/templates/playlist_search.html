@@ -1,7 +1,0 @@
-{% if filtered_playlists %}
-    {% for playlist in filtered_playlists %}
-      <li><a href="./search/{{ playlist.id }}">{{ playlist.pname }}</a></li>
-    {% endfor %}
-{% else %}
-  <li>No matches found</li>
-{% endif %}
