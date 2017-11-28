@@ -166,18 +166,6 @@ def change_password(request):
         'form': form
     })
 
-
-def addplaylist(request):
-    if request.method == 'POST':
-        form = AddPlaylistForm(request.POST)
-        if form.is_valid():
-            form.save()
-            pname = form.cleaned_data.get('pname')
-            return redirect('myplaylists')
-    else:
-        form = AddPlaylistForm()
-    return render(request, 'addplaylist.html', {'form': form})
-
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Playlist
