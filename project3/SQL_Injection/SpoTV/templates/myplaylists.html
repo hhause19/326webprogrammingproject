@@ -14,9 +14,9 @@
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/ajax.js' %}"></script>
 
-    <div id='Add Playlist' align='right'>
+    <button type="button" class="btn btn-primary">
         <a href="{% url 'playlist_create' %}" style='color: white;'>Add Playlist</a>
-    </div>
+    </button>
     {% if playlists %}
             {% for playlist in playlists %}
               <div class="col">
