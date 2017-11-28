@@ -30,15 +30,11 @@ urlpatterns += [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
-<<<<<<< HEAD
     url(r'^$', RedirectView.as_view(url='/SpoTV/', permanent=True)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-=======
-    url(r'^$', RedirectView.as_view(url='/SpoTV/login', permanent=True)),
-]
->>>>>>> f631317aa88bfa549fae58c73d33b77c805d0b89
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
