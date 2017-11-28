@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.urls import reverse
 from django import forms
 import uuid
@@ -9,8 +12,15 @@ class Profile(models.Model):
     '''
     user info
     '''
+    media_root = settings.MEDIA_ROOT
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)
-    photo = models.FileField(max_length=100)
+    photo = models.FileField(default='default.png')
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
 
     def __str__(self):
         """
