@@ -1,5 +1,5 @@
 {% extends "index_base_generic.html" %}
-
+{% load static %}
 
 {% block pagecontent %}
     <style>
@@ -9,11 +9,12 @@
     </style>
     <!-- Bootstrap core JavaScript -->
     <script src="https://use.fontawesome.com/e9acab6f74.js"></script>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/ajax.js' %}"></script>
 
-    
+
     <div id="left-panel">
     {% block genrelist %}
     <div id='playlist-title'>All Songs
@@ -26,8 +27,8 @@
 
                 <div class="caption">
                   <p font-color="white"><a style="margin-left: 10px">Title: <a>{{song.title}}</a></a>
-                  <a style="margin-left: 200px">Artist: <a>{{song.artist}}</a></a></a>        
-                  <a style="margin-left: 200px">Genre:  <a>{{ song.genre}}</a></a>    
+                  <a style="margin-left: 200px">Artist: <a>{{song.artist}}</a></a></a>
+                  <a style="margin-left: 200px">Genre:  <a>{{ song.genre}}</a></a>
                    <a style="margin-left: 200px">Album:  <a>{{song.album}}</a></a></p>
                 </div>
               </div>

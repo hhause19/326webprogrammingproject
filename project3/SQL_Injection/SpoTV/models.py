@@ -86,7 +86,7 @@ class Playlist(models.Model):
     user = models.ForeignKey(User, null=True, blank=True)
     pname = models.CharField(max_length=200)
     date = models.DateField()
-    image = models.FileField(upload_to=None, max_length=100)
+    image = models.FileField(upload_to='PlaylistPhotos', max_length=100)
     songs = models.ManyToManyField(Song)
 
     def __str__(self):

@@ -83,7 +83,7 @@ class YoutubePlaylist(models.Model):
         return reverse('youtubeplaylist-detail', args=[str(self.id)])
 
 class Playlist(models.Model):
-    user = models.ForeignKey(User, null=True, blank=True)
+    user = models.ForeignKey(User, null=False)
     pname = models.CharField(max_length=200)
     date = models.DateField()
     image = models.FileField(upload_to=None, max_length=100)

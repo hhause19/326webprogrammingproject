@@ -15,10 +15,11 @@ import jsonfield
 # Create your views here.
 @login_required
 def index(request):
+    user = request.user
     #get the titles of all the playlists
-    profile = Profile.objects.get(user=request.user)
+    profile = Profile.objects.get(user=user)
     #playlists = request.user.playlist_set.all()
-    playlists = Playlist.objects.filter(user=request.user)
+    playlists = Playlist.objects.filter(user=user)
     all_titles = playlists.values_list('pname')
     propic = profile.photo
     fname = request.user.first_name
@@ -43,7 +44,7 @@ def playlist_filter(request):
     else:
         search_text = ''
 
-    playlists = Playlist.objects.filter(pname__icontains = search_text)
+    playlists = Playlist.objects.filter(pname__icontains = search_text, user=request.user)
 
     return render(
         request,
@@ -58,7 +59,7 @@ def myplaylists(request):
     lname = request.user.last_name
     usrname = request.user.username
     email = request.user.email
-    playlists = Playlist.objects.all()
+    playlists = Playlist.objects.get(usr=request.user)
     return render(
         request,
         'myplaylists.html',
