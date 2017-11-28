@@ -89,27 +89,19 @@
 
     <div id="Change Password" class="tabcontent">
       <h2>Change Password</h2>
-      <form>
-        Old Password:<br>
-        <input type="text" name="oldpass"><br>
-        New Password:<br>
-        <input type="text" name="newpass"><br>
-        Confirm New Password:<br>
-        <input type="text" name="confirmnewpass"><br><br>
-        <input type="submit">
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
       </form>
     </div>
 
     <div id="Change Email Address" class="tabcontent">
       <h2>Change Email Address</h2>
-      <form>
-        Old Email:<br>
-        <input type="text" name="oldemail"><br>
-        New Email:<br>
-        <input type="text" name="newemail"><br>
-        Confirm New Email:<br>
-        <input type="text" name="confirmnewemail"><br><br>
-        <input type="submit">
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
       </form>
     </div>
 

@@ -5,9 +5,11 @@ from django.views import generic
 from .forms import SignUpForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib import messages
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, update_session_auth_hash
 from django.shortcuts import render, redirect
 import jsonfield
 # Create your views here.
@@ -147,3 +149,17 @@ def spotify_auth(request):
         'registration/spotify_auth.html',
         context={}
     )
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'accinfo.html', {'form': form})
