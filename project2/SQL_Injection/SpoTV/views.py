@@ -1,21 +1,26 @@
 from django.shortcuts import render
-from .models import Song, Playlist, User, YoutubePlaylist
+from .models import Song, Playlist, YoutubePlaylist, Profile
+from django.contrib.auth.models import User
 from django.views import generic
 from .forms import SignUpForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth import login as auth_login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 import jsonfield
 # Create your views here.
-
+@login_required
 def index(request):
     #get the titles of all the playlists
-    all_titles = Playlist.objects.values_list('pname')
-    propic = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').photo
-    fname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').fname
-    lname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').lname
+    profile = Profile.objects.get(user=request.user)
+    #playlists = request.user.playlist_set.all()
+    playlists = Playlist.objects.filter(user=request.user)
+    all_titles = playlists.values_list('pname')
+    propic = profile.photo
+    fname = request.user.first_name
+    lname = request.user.last_name
     playlists = Playlist.objects.all()
     #playlistjson = YoutubePlaylist.objects.get(vid = '92fef807a09e497f87ab51d127dd8c89').playlist
     #objects.values_list('eng_name', flat=True)
@@ -29,6 +34,7 @@ def index(request):
 
 
 #Used to filter the playlist based on user input.
+@login_required
 def playlist_filter(request):
     if request.method == 'POST':
         search_text = request.POST['search_text']
@@ -42,13 +48,14 @@ def playlist_filter(request):
         'playlist_search.html',
         context = {'filtered_playlists': playlists})
 
-
+@login_required
 def myplaylists(request):
-    propic = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').photo
-    fname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').fname
-    lname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').lname
-    usrname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').usrname
-    email = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').email
+    profile = Profile.objects.get(user=request.user)
+    propic = profile.photo
+    fname = request.user.first_name
+    lname = request.user.last_name
+    usrname = request.user.username
+    email = request.user.email
     playlists = Playlist.objects.all()
     return render(
         request,
@@ -56,12 +63,14 @@ def myplaylists(request):
         context={'playlists':playlists, 'propic': propic, 'fname': fname, 'lname': lname}
     )
 
+@login_required
 def myplaylistdetail(request,pk):
-    propic = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').photo
-    fname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').fname
-    lname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').lname
-    usrname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').usrname
-    email = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').email
+    profile = Profile.objects.get(user=request.user)
+    propic = profile.photo
+    fname = request.user.first_name
+    lname = request.user.last_name
+    usrname = request.user.username
+    email = request.user.email
     try:
         playlist_id=Playlist.objects.get(pk=pk)
     except Playlist.DoesNotExist:
@@ -75,25 +84,29 @@ def myplaylistdetail(request,pk):
         context={'playlist':playlist_id, 'propic': propic, 'fname': fname, 'lname': lname}
     )
 
+@login_required
 def accinfo(request):
     #get the account information
-    propic = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').photo
-    fname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').fname
-    lname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').lname
-    usrname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').usrname
-    email = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').email
+    profile = Profile.objects.get(user=request.user)
+    propic = profile.photo
+    fname = request.user.first_name
+    lname = request.user.last_name
+    usrname = request.user.username
+    email = request.user.email
     return render(
         request,
         'accinfo.html',
         context={'propic': propic, 'fname': fname, 'lname': lname, 'usrname': usrname, 'email': email}
     )
 
+@login_required
 def preference(request):
-    propic = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').photo
-    fname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').fname
-    lname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').lname
-    usrname = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').usrname
-    email = User.objects.get(uid = '25fc7c5f15b24a018eeac09d58913a69').email
+    profile = Profile.objects.get(user=request.user)
+    propic = profile.photo
+    fname = request.user.first_name
+    lname = request.user.last_name
+    usrname = request.user.username
+    email = request.user.email
     songlists = Song.objects.all()
     return render(
         request,
@@ -104,7 +117,7 @@ def preference(request):
 def login(request):
     return render(
         request,
-        'login.html',
+        'registration/login.html',
         context={}
     )
 
@@ -127,6 +140,7 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
 
+@login_required
 def spotify_auth(request):
     return render(
         request,

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Song, YoutubePlaylist, Playlist, User
+from .models import Song, YoutubePlaylist, Playlist, Profile
 # Register your models here.
 admin.site.register(YoutubePlaylist)
 # Register your models here.
@@ -8,7 +8,4 @@ class SongAdmin(admin.ModelAdmin):
 admin.site.register(Song, SongAdmin)
 
 admin.site.register(Playlist)
-
-class UserAdmin(admin.ModelAdmin):
-    list_display =  ('fname', 'lname', 'usrname', )
-admin.site.register(User, UserAdmin)
+admin.site.register(Profile)
