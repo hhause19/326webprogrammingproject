@@ -18,4 +18,9 @@ urlpatterns = [
      url(r'^search/(?P<pk>\d+)$', views.myplaylistdetail, name = 'playlistdetail'),
      url(r'^password/$', views.change_password, name='change_password'),
      url(r'^accounts/', include('django.contrib.auth.urls')),
+     url(r'^myplaylists/create/$', views.PlaylistCreate.as_view(), name= 'playlist_create'),
+     url(r'^myplaylists/(?P<pk>\d+)/update/$', views.PlaylistUpdate.as_view(), name='playlist_update'),
+     url(r'^myplaylists/(?P<pk>\d+)/delete/$', views.PlaylistDelete.as_view(), name='playlist_delete'),
+     url(r'^myplaylists/$', views.PlaylistListView.as_view(), name='playlist'),
+
 ]

@@ -1,5 +1,9 @@
 {% extends "index_base_generic.html" %}
 
+<div id='Add Song' align='right'>
+    <a href="{% url 'playlist_update' playlist.id %}" style='color: white;'>Add Song</a>
+</div>
+
 {% block pagecontent %}
 <div id="right-panel">
     <div class="inner-addon right-addon">

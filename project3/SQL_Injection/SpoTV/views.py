@@ -165,3 +165,42 @@ def change_password(request):
     return render(request, 'accinfo.html', {
         'form': form
     })
+
+
+def addplaylist(request):
+    if request.method == 'POST':
+        form = AddPlaylistForm(request.POST)
+        if form.is_valid():
+            form.save()
+            pname = form.cleaned_data.get('pname')
+            return redirect('myplaylists')
+    else:
+        form = AddPlaylistForm()
+    return render(request, 'addplaylist.html', {'form': form})
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Playlist
+
+class PlaylistCreate(CreateView):
+    model = Playlist
+    fields = ['userid','pname','date','songs']
+    initial={'userid':'25fc7c5f15b24a018eeac09d58913a69',}
+    success_url = reverse_lazy('playlist-detail', args=[1])
+
+class PlaylistUpdate(UpdateView):
+    model = Playlist
+    fields = ['pname','songs',]
+    success_url = reverse_lazy('playlists')
+
+class PlaylistDelete(DeleteView):
+    model = Playlist
+    success_url = reverse_lazy('playlists')
+
+from django.views import generic
+
+class PlaylistListView(generic.ListView):
+    model = Playlist
+
+class PlaylistDetailView(generic.DetailView):
+    model = Playlist
