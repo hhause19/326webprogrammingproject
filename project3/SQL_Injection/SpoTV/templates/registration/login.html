@@ -1,0 +1,44 @@
+{% extends "login_base_generic.html" %}
+  {% block content %}
+    <!---Middle Pane------------>
+    <div id='login-header'>Welcome to SpoTV!
+        <div id='logo1'>
+        </div>
+        <div id='logo2'>
+        </div>
+    </div>
+    <div id='content-wrapper'>Please Login
+      {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+      {% endif %}
+
+      {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+          <p>Please login to see this page.</p>
+        {% endif %}
+      {% endif %}
+        <div id='login-box'>
+          <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class='login-field' align='center'>
+                <input type="text" class="form-control" placeholder="Username" name='username'/>
+            </div>
+            <div class='login-field' align='center'>
+                <input type="password" class="form-control" placeholder="Password" name='password'/>
+                <a style='color: white; font-size: 10px;' href="{% url 'password_reset' %}">Forgot Password</a>
+            </div>
+            <div class=loginbtn>
+                <input type="submit" class="btn btn-primary" onclick="location.href ='{% url 'index' %}'" value="Login"></input>
+                <input type="hidden" name="next" value="{{ next }}" />
+            </div>
+            <div id='signup' align='center'>
+                <a href="{% url 'signup' %}" style='color: white;'>Sign Up</a>
+            </div>
+          </form>
+        </div>
+    </div>
+
+  {% endblock %}
