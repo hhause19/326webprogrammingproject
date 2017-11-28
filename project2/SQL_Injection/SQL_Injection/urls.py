@@ -30,7 +30,7 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    url(r'^$', RedirectView.as_view(url='/SpoTV/', permanent=True)),
+    url(r'^$', RedirectView.as_view(url='/SpoTV/login', permanent=True)),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
