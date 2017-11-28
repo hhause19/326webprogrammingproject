@@ -184,8 +184,8 @@ from .models import Playlist
 
 class PlaylistCreate(CreateView):
     model = Playlist
-    fields = ['userid','pname','date','songs']
-    initial={'userid':'25fc7c5f15b24a018eeac09d58913a69',}
+    fields = ['pname','date','songs']
+    labels = { 'pname':'Name', }
     success_url = reverse_lazy('playlist-detail', args=[1])
 
 class PlaylistUpdate(UpdateView):

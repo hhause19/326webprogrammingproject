@@ -1,10 +1,14 @@
 {% extends "index_base_generic.html" %}
 
+
+
+{% block pagecontent %}
 <div id='Add Song' align='right'>
     <a href="{% url 'playlist_update' playlist.id %}" style='color: white;'>Add Song</a>
 </div>
-
-{% block pagecontent %}
+<div id='Delete Playlist' align='right'>
+    <a href="{% url 'playlist_delete' playlist.id %}" style='color: white;'>Delete Playlist</a>
+</div>
 <div id="right-panel">
     <div class="inner-addon right-addon">
       <span class="fa fa-search"></span>
