@@ -12,7 +12,12 @@
       type="image/png"
           href="{% static 'images/tv.png' %}">
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href={% static 'css/bootstrap.min.css' %} rel="stylesheet">
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/ajax.js' %}"></script>
     <style>
     /* Style the tab */
       body{
@@ -84,7 +89,7 @@
       <h2>Change Profile Picture</h2>
       <h4>Current Picture:</h4>
       <button  type="button">Change Photo</button>
-      <img src='{{propic}}' alt = "Profile image">
+      <img src='../media/{{propic}}' alt = "Profile image">
     </div>
 
     <div id="Change Password" class="tabcontent">
@@ -135,10 +140,7 @@
       }
       document.getElementById("defaultOpen").click();
     </script>
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
 
 
   </body>
