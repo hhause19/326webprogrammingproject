@@ -13,6 +13,12 @@
         <input type='submit' class="btn btn-primary" id=spotlogin value="Login with Spotify"></input>
       </div>
     </form>
+    <p style="color:white;" id='spotsuccess'>Successfully logged in as: {{ results.display_name }} </p>
+    <form action="{% url 'youtube_auth' %}">
+      <div class=loginbtn>
+        <input type='submit' class="btn btn-primary" id='spot_next' value="Next"></input>
+      </div>
+    </form>
   </div>
 </div>
 

@@ -14,8 +14,8 @@
       <span class="fa fa-search"></span>
       <input type="text" class="form-control" placeholder="Search" />
     </div>
-
-    <div id='playlist-title'>SONGS
+    <div id='playlist-title'>Songs
+      <p style="color:white;">Playlist: {{ playlist.pname }}</p>
     </div>
     <div class='playlist-holder'>
         {% if playlist.songs.all %}
@@ -25,10 +25,10 @@
              {% endfor %}
         </ul>
         {% else %}
+        <p style="color:white;">No songs found.</p>
         {% endif %}
     </div>
 </div>
-  <p>Title: {{ playlist.pname }}</p>
 
   <!-- VIDEO PLAYER -->
   <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->

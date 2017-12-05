@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SpoTV.apps.SpotvConfig',
     'django.contrib.admin',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'SQL_Injection.urls'
@@ -63,12 +65,20 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'SQL_Injection.wsgi.application'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.spotify.SpotifyOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+)
 
 
 # Database
@@ -118,9 +128,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
+SOCIAL_AUTH_SPOTIFY_LOGIN_REDIRECT_URL = 'spotify_auth_success'
+SOCIAL_AUTH_SPOTIFY_LOGIN_URL = 'spotify_auth_success'
+SOCIAL_AUTH_GOOGLE_OAUTH2_LOGIN_REDIRECT_URL = 'youtube_auth_success'
+SOCIAL_AUTH_GOOGLE_OAUTH2_LOGIN_URL = 'youtube_auth_success'
 LOGIN_REDIRECT_URL = '/'
 LONGIN_URL='registration/login/'
 LOGOUT_REDIRECT_URL = 'login'
 STATIC_URL = '/static/'
 MEDIA_URL = 'SpoTV/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'SpoTV', 'media')
+SOCIAL_AUTH_SPOTIFY_KEY = 'a6579a8cbd1949f4a26f2cc85e25ca29'
+SOCIAL_AUTH_SPOTIFY_SECRET = '62f5ec1add1245c2a4db9fc2fa80ca22'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '535317070838-8oosnkbgb01pb0v7n6n172l867f37sk3.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'EO6ZgGr97P8jPfNIOzGkaXiI'
+SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
+      'access_type': 'offline'
+}
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/youtube.upload',
+    'https://www.googleapis.com/auth/plus.me',
+    'https://www.googleapis.com/auth/youtube.force-ssl'
+]
+API_SERVICE_NAME = 'youtube'
+API_VERSION = 'v3'

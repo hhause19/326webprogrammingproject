@@ -13,7 +13,6 @@ class Profile(models.Model):
     user info
     '''
     media_root = settings.MEDIA_ROOT
-
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)
     photo = models.FileField(default='default.png')
 
@@ -43,10 +42,8 @@ class Song(models.Model):
     artist = models.CharField(max_length=200)
     album = models.CharField(max_length=200)
     genre = models.CharField(max_length=200)
-
     sid = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular song across whole library")
     hasVideo = models.BooleanField(null=False)
-    date = models.DateField(auto_now=False, auto_now_add=False)
 
     def __str__(self):
         """
@@ -61,34 +58,12 @@ class Song(models.Model):
         """
         return reverse('song-detail', args=[str(self.id)])
 
-class YoutubePlaylist(models.Model):
-    """
-    Model representing a YouTube playlist.
-    """
-    vid = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular video playlist")
-    title = models.CharField(max_length=200)
-    playlist = jsonfield.JSONField(blank=True,null=True)
-
-    def __str__(self):
-        """
-        String for representing the Model object.
-        """
-        return self.title
-
-
-    def get_absolute_url(self):
-        """
-        Returns the url to access a particular book instance.
-        """
-        return reverse('youtubeplaylist-detail', args=[str(self.id)])
-
 class Playlist(models.Model):
     user = models.ForeignKey(User, null=True, blank=True)
     pname = models.CharField(max_length=200)
-    date = models.DateField()
     image = models.FileField(upload_to='PlaylistPhotos', max_length=100)
     songs = models.ManyToManyField(Song)
-
+    videoID = models.CharField(max_length=200, null=True)
     def __str__(self):
         return self.pname
 

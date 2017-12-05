@@ -14,25 +14,33 @@
     <div id='playlist-title'>Spotify Playlists
     </div>
     <div class='playlist-holder'>
-      <ul class='playlists' id = 'search-results'>
+      <ul class='playlists' id ='search-results'>
         {% if playlists %}
             {% for playlist in playlists %}
-              <li><a href="./myplaylists/{{ playlist.id }}">{{ playlist.pname }}</a></li>
+              <a id='selected_playlist' href="{% url 'index' %}?playlist-id={{ playlist.id }}" value='{{ playlist.id }}'><li>{{ playlist }}</li></a>
             {% endfor %}
         {% else %}
           <li>No matches found.</li>
         {% endif %}
       </ul>
     </div>
-
-    <button type="button" class="btn btn-primary">Create Video Playlist</button>
-    <button type="button" class="btn btn-primary">Import From Spotify</button>
-    <button type="button" class="btn btn-primary">Save YouTube Playlist</button>
+    <form method='GET'>
+      <div class=loginbtn>
+        <input type='submit' name='import' class="btn btn-primary" id='spotlogin' value="Import Spotify Playlists"></input>
+      </div>
+    </form>
+    <form method='GET'>
+      <div class=loginbtn>
+        <input type="submit" name='create_video' class="btn btn-primary" id='ytlogin' value='Create Selected Playlist'></input>
+        <input type="hidden" name="create" value="{{ pid }}"</input>
+      </div>
+    </form>
+    <div class=loginbtn>
+      <input type="submit" name='' class="btn btn-primary" value='Save Video Playlist'></input>
+    </div>
 </div>
 
 <!-- Page Content -->
-
-
 <!-- Bootstrap core JavaScript -->
 
 <script src="https://use.fontawesome.com/e9acab6f74.js"></script>
@@ -43,9 +51,17 @@
 
 <!-- VIDEO PLAYER -->
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-<div id='playerwrapper'><div id="player"></div></div>
-<input type="hidden" id="myVar" name="variable" value="{{ json }}">
+{% if playlistID == "noplaylistselected" %}
+  <div id='noPL'>Please select a playlist.</div>
+{% else %}
+  <div id='noPL'>No video playlist for created selected playlist.</div>
+{% endif %}
 
+{% if playlistID != "noplaylistselected" and playlistID != NULL %}
+  <div id='playerwrapper'><div id="player"></div></div>
+  <input type="hidden" id="myVar" name="variable" value="{{ playlistID }}">
+{% endif %}
+<!--<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLM5k2ytzwH7CRhzc4qGiBXn2P53UXpVEk" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>-->
 <script>
   // 2. This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
@@ -57,18 +73,22 @@
   // 3. This function creates an <iframe> (and YouTube player)
   //    after the API code downloads.
 
-  var myVar = document.getElementById('myVar').value;
+  var playlistID = document.getElementById('myVar').value;
   //var jsonObj = jQuery.parseJSON(myVar);
   //var id = items[1].id;
   //var jsonObj = JSON.parse(myVar);
   //console.log(myVar);
   //console.log(items[1].id);
   var player;
-  function onYouTubeIframeAPIReady() {
+  console.log(playlistID);
+  function onYouTubeIframeAPIReady(){
     player = new YT.Player('player', {
-      height: '480',
-      width: '854',
-      videoId: 'M7lc1UVf-VE',
+      height: '567',
+      width: '1008',
+      playerVars: {
+        listType:'playlist',
+        list: playlistID,
+      },
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange
@@ -95,4 +115,5 @@
     player.stopVideo();
   }
 </script>
+
 {% endblock %}

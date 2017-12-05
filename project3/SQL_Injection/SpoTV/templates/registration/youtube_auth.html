@@ -7,10 +7,10 @@
 {% endif %}
 <div id=spotify_verify>
   <div id="login">
-    <h2 style="color: white;">Please Authorize your Spotify Account</h2>
-    <form action="{% url 'social:begin' 'spotify' %}">
+    <h2 style="color: white;">Please Authorize your Google Account</h2>
+    <form action="{% url 'social:begin' 'google-oauth2' %}">
       <div class=loginbtn>
-        <input type='submit' class="btn btn-primary" id=spotlogin value="Login with Spotify"></input>
+        <input type='submit' class="btn btn-primary" id=ytlogin value="Login with Google"></input>
       </div>
     </form>
   </div>
