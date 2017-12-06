@@ -54,7 +54,7 @@
 {% if playlistID == "noplaylistselected" %}
   <div id='noPL'>Please select a playlist.</div>
 {% else %}
-  <div id='noPL'>No video playlist for created selected playlist.</div>
+  <div id='noPL'>No video playlist for selected playlist.</div>
 {% endif %}
 
 {% if playlistID != "noplaylistselected" and playlistID != NULL %}
@@ -85,6 +85,7 @@
     player = new YT.Player('player', {
       height: '567',
       width: '1008',
+      autoplay: 1,
       playerVars: {
         listType:'playlist',
         list: playlistID,

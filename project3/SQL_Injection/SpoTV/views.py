@@ -129,7 +129,7 @@ def index(request):
         p.save()
 
         #need to wait for videos to actually get added
-        time.sleep(5)
+        time.sleep(8)
 
         return render(request, 'index.html', context={'propic': propic, 'fname': fname, 'lname': lname,'playlists':saved_playlists,'pid':pid,'playlistID':youtube_pid})
     #used for importing playlist
@@ -145,7 +145,7 @@ def index(request):
             for pl in plists['items']:
                 if pl['owner']['id'] == spotid:
                     playlists.append(pl['name'])
-                    p = Playlist(user=request.user,pname = pl['name'],videoID=NULL)
+                    p = Playlist(user=request.user,pname = pl['name'])
                     p.save()
                     results = sp.user_playlist(spotid, pl['id'],fields="tracks,next")
                     tracks = results['tracks']
