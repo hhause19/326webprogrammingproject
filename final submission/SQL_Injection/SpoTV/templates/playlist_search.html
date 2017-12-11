@@ -1,0 +1,7 @@
+{% if filtered_playlists %}
+    {% for playlist in filtered_playlists %}
+      <a id='selected_playlist' href="{% url 'index' %}?playlist-id={{ playlist.id }}" value='{{ playlist.id }}'><li>{{ playlist }}</li></a>
+    {% endfor %}
+{% else %}
+  <li>No matches found</li>
+{% endif %}

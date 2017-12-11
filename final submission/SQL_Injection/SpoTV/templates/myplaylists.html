@@ -1,0 +1,36 @@
+{% extends "index_base_generic.html" %}
+{% load static %}
+
+{% block pagecontent %}
+    <style>
+    p{
+        color: white;
+    }
+    </style>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://use.fontawesome.com/e9acab6f74.js"></script>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/ajax.js' %}"></script>
+
+    <button type="button" class="btn btn-primary">
+        <a href="{% url 'playlist_create' %}" style='color: white;'>Add Playlist</a>
+    </button>
+    {% if playlists %}
+            {% for playlist in playlists %}
+              <div class="col">
+                <div class="thumbnail custom">
+
+                  <div class="caption">
+                    <img src="../media/{{ playlist.image }}"></img>
+                    <p font-color="white">{{ playlist.pname }}</p>
+                    <p><a href="{{ playlist.id }}" class="btn btn-primary">Play</a> <a href="#" class="btn btn-primary">Share</a></p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+        {% else %}
+      {% endif %}
+{% endblock %}

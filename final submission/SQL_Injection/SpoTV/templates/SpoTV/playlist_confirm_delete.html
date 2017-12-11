@@ -1,0 +1,20 @@
+{% extends "login_base_generic.html" %}
+
+{% block content %}
+
+<style>
+h1,p{
+    color: white;
+}
+</style>
+
+<h1>Delete Playlist</h1>
+
+<p>Are you sure you want to delete the playlist: {{ playlist }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" value="Yes, delete." />
+</form>
+
+{% endblock %}
