@@ -129,7 +129,7 @@ def index(request):
         p.save()
 
         #need to wait for videos to actually get added
-        time.sleep(8)
+        time.sleep(5)
 
         return render(request, 'index.html', context={'propic': propic, 'fname': fname, 'lname': lname,'playlists':saved_playlists,'pid':pid,'playlistID':youtube_pid})
     #used for importing playlist
