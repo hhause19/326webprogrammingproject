@@ -2,11 +2,50 @@
 {% load static %}
 
 {% block pagecontent %}
-    <style>
-    p{
-        color: white;
-    }
-    </style>
+
+<style>
+
+.navigation {
+  width: 200px;
+}
+
+.option, .subchoice {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.option a {
+  display: block;
+  background-color: #bab6d8;
+  text-decoration: none;
+  padding: 10px;
+  color: #000;
+}
+
+.option a:hover {
+    background-color: #bab6d8;
+}
+
+.option li:hover .subchoice {
+  display: block;
+  max-height: 300px;
+}
+
+.subchoice a {
+  background-color: #bce0c3;
+}
+
+.subchoice a:hover {
+  background-color: lightpink;
+}
+
+.subchoice {
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: all 0.5s ease-out;
+}
+</style>
     <!-- Bootstrap core JavaScript -->
     <script src="https://use.fontawesome.com/e9acab6f74.js"></script>
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
@@ -15,32 +54,45 @@
     <script src="{% static 'vendor/bootstrap/js/ajax.js' %}"></script>
 
 
-    <div id="left-panel">
-    {% block genrelist %}
-    <div id='playlist-title'>All Songs
-    </div>
-    <div class='playlist-holder'>
+<form action="" method="get">  
+  <nav class="navigation">
+      <ul class="option">
+        <li><a href="">All Songs</a>
+            <ul class="subchoice">
+              <li><a href="{% url 'index' %}">Back To Homepage</a></li>
+            </ul>
+        </li>
+      </ul>
+  </nav>
+  <table>
+      <colgroup>
+        <col width="300" style="background-color:lightblue">
+      <col width="300" style="background-color:lightblue">
+      <col width="300" style="background-color:lightblue">
+      <col width="300" style="background-color:lightblue">
+      <col width="300" style="background-color:lightblue">
+      </colgroup>
+      <tr>
+        <th style="background-color:lightblue">Choice</th>
+        <th>Title</th>
+        <th>Artist</th>
+      <th>Genre</th>
+      <th>Album</th>
+      </tr>
+
         {% if songs %}
           {% for song in songs %}
-            <div class="col">
-              <div class="thumbnail custom">
-
-                <div class="caption">
-                  <p font-color="white"><a style="margin-left: 10px">Title: <a>{{song.title}}</a></a>
-                  <a style="margin-left: 200px">Artist: <a>{{song.artist}}</a></a></a>
-                  <a style="margin-left: 200px">Genre:  <a>{{ song.genre}}</a></a>
-                   <a style="margin-left: 200px">Album:  <a>{{song.album}}</a></a></p>
-                </div>
-              </div>
-            </div>
+                  <tr><td style="background-color:lightblue"><input type="checkbox" name="song" ><br></td>
+                  <td>{{song.title}}</td>
+                  <td>{{song.artist}}</td>
+                  <td>{{song.genre}}</td>
+                  <td>{{song.album}}</td>
+                  </tr>
           {% endfor %}
         {% else %}
         {% endif %}
-    </div>
-    {% endblock %}
-    <button type="button" style="width: 200px">Classic Music</button>
-    <button type="button" style="width: 200px">Rock Music</button>
-    <button type="button" style="width: 200px">other Music</button>
-    <p><button type="button" class="btn btn-primary"><a href="{% url 'index' %}">Done</a></button></p>
-</div>
+
+    </table>
+ </form>
 {% endblock %}
+
